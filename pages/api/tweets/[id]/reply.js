@@ -1,6 +1,6 @@
-import connectDb from '../../../lib/mongo';
-import Tweet from '../../../lib/models/Tweet';
-import Reply from '../../../lib/models/Reply';
+import connectDb from "../../../../lib/mongo";
+import Tweet from "../../../../lib/models/Tweet";
+import Reply from "../../../../lib/models/Reply";
 
 export default async function handler(req, res) {
     await connectDb();
