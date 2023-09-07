@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import Navbar from '../components/Navbar';
 
-function Login() {
+const Login = () => {
     return (
         <div>
+            <Navbar />
             <h1>Login</h1>
             {/* Add your login form here */}
             <p>Don't have an account? <Link href="/signup">Sign Up</Link></p>
