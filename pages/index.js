@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from '../components/Navbar';
+import AnonNavbar from '@components/AnonNavbar';
+import UserNavbar from '@components/UserNavbar';
 import TweetBox from '../components/TweetBox';
 import axios from 'axios';  // Assuming you're using axios, otherwise use fetch.
 
@@ -36,7 +37,7 @@ const Homepage = () => {
 
     return (
         <div>
-            <Navbar />
+            {isLoggedIn ? <UserNavbar /> : <AnonNavbar /> }
 
             <h1>Welcome to Y, a Twitter-like Web Application Project!</h1>
             <h1>Created by Johnny Jeong</h1>

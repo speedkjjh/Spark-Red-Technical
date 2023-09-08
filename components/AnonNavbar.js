@@ -1,18 +1,15 @@
 // Importing necessary components from react-bootstrap
 import { Container, Nav, Navbar } from 'react-bootstrap';
 
-const BasicNavbar = () => {
+const AnonNavbar = () => {
     return (
-        <Navbar expand="lg" className="bg-body-tertiary">
+        <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
             <Container>
-                {/* Brand Logo */}
                 <Navbar.Brand href="/">Y</Navbar.Brand>
 
-                {/* Toggle button for smaller screens */}
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
-                {/* Navbar Items */}
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/login">Login</Nav.Link>
@@ -24,4 +21,4 @@ const BasicNavbar = () => {
     );
 }
 
-export default BasicNavbar;
+export default AnonNavbar;

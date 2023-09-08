@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Navbar from '../components/Navbar';
+import Navbar from '@components/AnonNavbar';
 import { useState } from 'react';
 import axios from 'axios'; // Import the axios library to make HTTP requests
 import 'bootstrap/dist/css/bootstrap.min.css';

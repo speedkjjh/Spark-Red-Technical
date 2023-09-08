@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Navbar from '../components/Navbar';
+import Navbar from '@components/AnonNavbar';
 import { useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
