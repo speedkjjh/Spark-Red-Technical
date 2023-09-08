@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
+import { Container, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Logout = () => {
@@ -16,12 +17,14 @@ const Logout = () => {
     }, []);  // The empty dependency array ensures this effect runs once when the component mounts.
 
     return (
-        <div>
-            <h1>You've been logged out</h1>
-            <p>
-                <Link href="/"><a>Return to Home Page</a></Link>
-            </p>
-        </div>
+        <Container>
+            <Alert variant="info">
+                <Alert.Heading>You've been logged out</Alert.Heading>
+                <p>
+                    <Link href="/"><a>Return to Home Page</a></Link>
+                </p>
+            </Alert>
+        </Container>
     );
 };
 

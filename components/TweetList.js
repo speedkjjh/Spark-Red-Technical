@@ -24,12 +24,16 @@ const TweetList = () => {
         .sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
 
     return (
-        <div>
+        <Stack gap={3}>
             <SearchBar handleSearch={handleSearch} />
-            {filteredTweets.map((tweet) => (
-                <TweetBox key={tweet.id} tweet={tweet} />
-            ))}
-        </div>
+            <ListGroup variant="flush">
+                {filteredTweets.map((tweet) => (
+                    <ListGroup.Item key={tweet.id}>
+                        <TweetBox tweet={tweet} />
+                    </ListGroup.Item>
+                ))}
+            </ListGroup>
+        </Stack>
     );
 };
 

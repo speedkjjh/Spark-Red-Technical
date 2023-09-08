@@ -1,8 +1,16 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import TweetList from './TweetList';
+import SearchBar from './SearchBar';
 
 function Home() {
     const [user, setUser] = useState(null);
     const [tweets, setTweets] = useState([]);
+    const [search, setSearch] = useState('');
+    const [newTweet, setNewTweet] = useState('');
 
     useEffect(() => {
         // Fetch user from local storage
@@ -11,47 +19,41 @@ function Home() {
             setUser(JSON.parse(storedUser));
         }
 
-        // Fetch tweets
-        (async () => {
-            const response = await fetch('/api/tweets');
-            const data = await response.json();
-            setTweets(data);
-        })();
+        fetchTweets();
     }, []);
 
-    const handleNewTweet = async (content) => {
-        // Call API to create a new tweet
-        const response = await fetch('/api/tweets', {
-            method: 'POST',
-            body: JSON.stringify({ content, userId: user._id }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        const newTweet = await response.json();
-
-        setTweets([newTweet, ...tweets]);
+    const fetchTweets = async () => {
+        const response = await axios.get('/api/tweets'); // Replace with your function to fetch tweets
+        setTweets(response.data);
     };
 
-    // Simplified handlers for reply and delete can be added similarly
+    const handleSearch = (value) => {
+        setSearch(value);
+    };
+
+    const handleNewTweet = async (event) => {
+        event.preventDefault();
+        const response = await axios.post('/api/tweets', { content: newTweet, userId: user._id }); // Replace with your function to create a new tweet
+        setNewTweet('');
+        fetchTweets();
+    };
+
+    const filteredTweets = tweets
+        .filter((tweet) => tweet.username.includes(search))
+        .sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
 
     return (
-        <div>
+        <Container>
             <h2>Welcome, {user ? user.username : 'Guest'}!</h2>
             {user && (
-                <div>
-                    <input type="text" placeholder="What's happening?" onBlur={(e) => handleNewTweet(e.target.value)} />
-                </div>
+                <Form onSubmit={handleNewTweet}>
+                    <Form.Control type="text" placeholder="What's happening?" value={newTweet} onChange={(e) => setNewTweet(e.target.value)} />
+                    <Button variant="primary" type="submit">Tweet</Button>
+                </Form>
             )}
-            <ul>
-                {tweets.map(tweet => (
-                    <li key={tweet._id}>
-                        <p>{tweet.content}</p>
-                        {/* Add buttons for reply and delete here */}
-                    </li>
-                ))}
-            </ul>
-        </div>
+            <SearchBar handleSearch={handleSearch} />
+            <TweetList tweets={filteredTweets} />
+        </Container>
     );
 }
 
