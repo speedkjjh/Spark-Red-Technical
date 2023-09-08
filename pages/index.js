@@ -25,18 +25,6 @@ const Homepage = () => {
                 <Navbar.Text>Created by Johnny Jeong</Navbar.Text>
                 {isLoggedIn ? <Navbar.Text>You are logged in!</Navbar.Text> : <Navbar.Text>Please log in to interact.</Navbar.Text>}
             </Navbar>
-
-            <Form inline>
-                <FormControl
-                    type="text"
-                    placeholder="Search by username..."
-                    value={searchTerm}
-                    onChange={e => setSearchTerm(e.target.value)}
-                    className="mr-sm-2"
-                />
-                <Button variant="outline-info">Search</Button>
-            </Form>
-
             <Home searchTerm={searchTerm} />
         </Container>
     );

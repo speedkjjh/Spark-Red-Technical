@@ -4,7 +4,6 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import TweetList from './TweetList';
-import SearchBar from './SearchBar';
 import { parseCookies } from 'nookies';
 
 function Home() {
@@ -28,10 +27,6 @@ function Home() {
         setTweets(response.data);
     };
 
-    const handleSearch = (value) => {
-        setSearch(value);
-    };
-
     const handleNewTweet = async (event) => {
         event.preventDefault();
         const response = await axios.post('/api/tweets', { content: newTweet, userId: user._id }); // Replace with your function to create a new tweet
@@ -52,7 +47,6 @@ function Home() {
                     <Button variant="primary" type="submit">Tweet</Button>
                 </Form>
             )}
-            <SearchBar handleSearch={handleSearch} />
             <TweetList tweets={filteredTweets} />
         </Container>
     );
