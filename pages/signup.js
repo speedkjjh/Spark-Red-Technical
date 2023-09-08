@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import { useState } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Signup = () => {
     const [username, setUsername] = useState('');
