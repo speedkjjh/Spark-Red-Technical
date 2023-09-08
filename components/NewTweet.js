@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { parseCookies } from 'nookies';
 
 function NewTweet() {
   const [content, setContent] = useState('');
@@ -9,9 +10,9 @@ function NewTweet() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const token = localStorage.getItem('token'); // Get the token from local storage
+    const { authToken } = parseCookies();
 
-    if (!token) {
+    if (!authToken) {
       alert('Please log in to post a tweet');
       return;
     }

@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import jwtDecode from 'jwt-decode';
+import { parseCookies } from 'nookies';
 
 const UserNavbar = () => {
     const [username, setUsername] = useState('');
 
     useEffect(() => {
         // Get token from local storage
-        const token = localStorage.getItem('userToken');
+        
+        const { authToken } = parseCookies();
 
-        if (token) {
+        if (authToken) {
             // Decode the token
-            const decodedToken = jwtDecode(token);
+            const decodedToken = jwtDecode(authToken);
 
             // Assuming your token payload has a 'username' field
             setUsername(decodedToken.username || 'User');

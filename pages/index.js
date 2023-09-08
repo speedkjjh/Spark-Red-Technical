@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Container, Navbar, Form, FormControl, Button } from 'react-bootstrap';
+import { Container, Navbar, Form, FormControl, Button, Stack } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AnonNavbar from '@components/AnonNavbar';
 import UserNavbar from '@components/UserNavbar';

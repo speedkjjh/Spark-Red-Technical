@@ -2,13 +2,14 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import { Container, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { destroyCookie } from 'nookies';
 
 const LogoutPage = () => {
 
     useEffect(() => {
         // Clear the user authentication token (or any other related user data).
         // This assumes the token is stored in local storage.
-        localStorage.removeItem('authToken');
+        destroyCookie(null, 'authToken');
 
         // Optionally, you can redirect users immediately after logging out.
         // For instance, to redirect to the home page, use the following:
