@@ -10,6 +10,8 @@ mongoose.connect('mongodb+srv://speedkjjh:Legitpassword123@jjtechnicaldb.beqquzi
     useUnifiedTopology: true
 });
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 app.use(express.json());
 
 // User Authentication Endpoints
