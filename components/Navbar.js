@@ -3,6 +3,7 @@ import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 const BasicNavbar = () => {
     return (
+        <>
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
                 {/* Brand Logo */}
@@ -29,6 +30,7 @@ const BasicNavbar = () => {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
+    </>
     );
 }
 
