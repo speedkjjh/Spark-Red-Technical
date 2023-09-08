@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./lib/routes/authRoutes');
 const tweetRoutes = require('./lib/routes/tweetRoutes');
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const app = express();
 
