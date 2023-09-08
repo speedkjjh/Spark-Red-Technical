@@ -10,12 +10,17 @@ const SearchBar = ({ handleSearch }) => {
     handleSearch(debouncedText);
   }, [debouncedText, handleSearch]);
 
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
+
   return (
     <Form.Control
       type="text"
       placeholder="Search by username..."
       value={text}
-      onChange={(e) => setText(e.target.value)}
+      onChange={handleChange}
+      className="mr-sm-2"
     />
   );
 };
