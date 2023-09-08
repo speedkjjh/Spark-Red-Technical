@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Container, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Logout = () => {
+const LogoutPage = () => {
 
     useEffect(() => {
         // Clear the user authentication token (or any other related user data).
@@ -28,4 +28,4 @@ const Logout = () => {
     );
 };
 
-export default Logout;
+export default LogoutPage;

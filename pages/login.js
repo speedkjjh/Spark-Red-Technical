@@ -6,13 +6,13 @@ import Login from '../components/Login';
 
 const LoginPage = () => {
     return (
-        <Container>
-            <Navbar />
-            <h1>Log In</h1>
-            <Login />
-            <p>Don't have an account? <Link href="/signup">Sign Up</Link></p>
-        </Container>
+      <Container>
+        <Navbar />
+        <h1>Log In</h1>
+        <Login />
+        <p>Don't have an account? <Link href="/signup">Sign Up</Link></p>
+      </Container>
     );
-};
-
-export default LoginPage;
+  };
+  
+  export default LoginPage;
