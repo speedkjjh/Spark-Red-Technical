@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import TweetList from './TweetList';
 import SearchBar from './SearchBar';
+import { parseCookies } from 'nookies';
 
 function Home() {
     const [user, setUser] = useState(null);
@@ -14,9 +15,9 @@ function Home() {
 
     useEffect(() => {
         // Fetch user from local storage
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
+        const { authToken } = parseCookies();
+        if (authToken) {
+            setUser(JSON.parse(authToken));
         }
 
         fetchTweets();

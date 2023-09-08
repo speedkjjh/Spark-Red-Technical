@@ -17,8 +17,8 @@ const TweetList = () => {
     setTweets(response.data);
   };
 
-  const handleSearch = (event) => {
-    setSearch(event.target.value);
+  const handleSearch = (value) => {
+    setSearch(value);
   };
 
   const filteredTweets = tweets
