@@ -1,28 +1,42 @@
-import connectDb from '../../../lib/mongo';
-import Tweet from '../../../lib/models/Tweet';
-import Reply from '../../../lib/models/Reply';
+import React, { useState } from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 
-export default async function handler(req, res) {
-    await connectDb();
+function SignUp() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
 
-    const tweetId = req.query.id;
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post('/api/signup', { username, email, password });
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-    if (req.method === 'POST') {
-        const reply = new Reply({
-            content: req.body.content,
-            user: req.body.userId,
-            tweet: tweetId
-        });
-
-        const savedReply = await reply.save();
-
-        // Update the tweet to add the reply
-        await Tweet.findByIdAndUpdate(tweetId, {
-            $push: { replies: savedReply._id }
-        });
-
-        res.status(200).json(savedReply);
-    } else {
-        res.status(400).send('Invalid method');
-    }
+    return (
+        <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="formGroupUsername">
+                <Form.Label>Username</Form.Label>
+                <Form.Control type="text" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formGroupEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formGroupPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+                Sign Up
+            </Button>
+        </Form>
+    );
 }
+
+export default SignUp;

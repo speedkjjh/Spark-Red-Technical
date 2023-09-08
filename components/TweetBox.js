@@ -1,23 +1,21 @@
-function TweetBox({ tweet }) {
-    return (
-        <div style={{ border: '1px solid #ddd', margin: '10px', padding: '10px' }}>
-            <strong>{tweet.user}</strong>
-            <p>{tweet.content}</p>
-            <p><em>{new Date(tweet.createdDate).toLocaleString()}</em></p>
+import React from "react";
 
-            {tweet.replies && tweet.replies.length > 0 && (
-                <div>
-                    {tweet.replies.map((reply, idx) => (
-                        <div key={idx} style={{ border: '1px solid #ccc', margin: '10px', padding: '5px' }}>
-                            <strong>{reply.user}</strong>
-                            <p>{reply.content}</p>
-                            <p><em>{new Date(reply.createdDate).toLocaleString()}</em></p>
-                        </div>
-                    ))}
-                </div>
-            )}
+const TweetBox = (props) => {
+    const { user, content, createdDate, username } = props.tweet;
+    return (
+        <div className="item">
+            <div className="content">
+                <div className="header">{username}</div>
+                <div>{createdDate}</div>
+                <div>{content}</div>
+            </div>
+            <i
+                className="trash alternate outline icon"
+                style={{ color: "blue", marginTop: "7px" }}
+                onClick={() => props.clickHander(id)}
+            ></i>
         </div>
     );
-}
+};
 
 export default TweetBox;
